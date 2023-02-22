@@ -1,0 +1,75 @@
+
+
+
+-------------------------------------------------------------------------------
+Recibir todos nuestros perritos
+
+grep "Jorge Dávalos\|Sarahi Salazar" perritos.csv
+
+-------------------------------------------------------------------------------
+Todos los perritos cuya edad supera los 15
+
+awk -F ',' '$2 > 15 {print $1, $2, $3}' perritos.csv
+
+-------------------------------------------------------------------------------
+Indica al final de un registro con un perruno mestizo la cadena "~ PERRUNO MESTIZO DETECTED ~"
+
+awk -F, '{print $1, $2, $3}' perritos.csv | sed '/Mestizo/ s/$/ ~ PERRUNO MESTIZO DETECTED ~ /'
+
+-------------------------------------------------------------------------------
+Traer todos los Chihuahuas con grep
+Luego filtrar los Chihuahuas con edad menor a 2 añotes
+Por ultimo, cambiar la palabra Chihuahua, por Peque Chihuahua
+
+grep "Chihuahua" perritos.csv | awk -F',' '{if($2 < 2) print $1","$2","$3}' | sed 's/Chihuahua/Peque Chihuahua/g'
+
+-------------------------------------------------------------------------------
+Traer todos los perritos que empiecen con P
+Luego filytramos quitando la URL y poniendo en mayus el autor
+Ordenamos en orden alfabetico
+Y por ultimo, cambiamos la separacion de comas por virgulilla
+
+grep '^P' perritos.csv | awk -F',' '{print $1","$2","$3","toupper($5)}' | sort | sed 's/,/ ~ /g'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
